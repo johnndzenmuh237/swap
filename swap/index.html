@@ -311,45 +311,15 @@
 
             <h1 class="hero-title">Wallet V4</h1>
 
-            <p class="hero-subtitle">
-                Recent Successful Claims
-            </p>
-            <div class="claim-history" id="claimHistory"></div>
-                <div class="claim-item">
-                    <span class="wallet">0x71A9...8F3C</span>
-                    <span class="amount">$324.50</span>
-                    <span class="time">2 mins ago</span>
-                </div>
+      <p class="hero-subtitle">
+    Recent Successful Claims
+</p>
 
-                <div class="claim-item">
-                    <span class="wallet">0x9BC3...D2A8</span>
-                    <span class="amount">$1,120.00</span>
-                    <span class="time">6 mins ago</span>
-                </div>
+<div class="claim-history" id="claimHistory"></div>
 
-                <div class="claim-item">
-                    <span class="wallet">0x4E62...B9F7</span>
-                    <span class="amount">$785.25</span>
-                    <span class="time">12 mins ago</span>
-                </div>
-
-                <div class="claim-item">
-                    <span class="wallet">0xA15F...6C91</span>
-                    <span class="amount">$2,430.75</span>
-                    <span class="time">18 mins ago</span>
-                </div>
-
-                <div class="claim-item">
-                    <span class="wallet">0xC829...AF33</span>
-                    <span class="amount">$560.00</span>
-                    <span class="time">26 mins ago</span>
-                </div>
-
-            </div>
-
-            <p class="hero-subtitle">
-                Connect your wallet to verify your eligibility and claim available rewards.
-            </p>
+<p class="hero-subtitle">
+    Connect your wallet to verify your eligibility and claim available rewards.
+</p>
 
             <button class="hero-claim-btn" id="heroClaimBtn">
                 Connect Wallet
@@ -637,31 +607,58 @@ const claimAmount = (Math.random() * (maxAmount - minAmount) + minAmount).toFixe
             }
         }
 
-        const claimSets = [
+ const claimSets = [
     [
-        {wallet:"0x71A9...8F3C", amount:"$324.50", time:"2 mins ago"},
-        {wallet:"0x9BC3...D2A8", amount:"$1,120.00", time:"6 mins ago"},
-        {wallet:"0x4E62...B9F7", amount:"$785.25", time:"12 mins ago"},
-        {wallet:"0xA15F...6C91", amount:"$2,430.75", time:"18 mins ago"},
-        {wallet:"0xC829...AF33", amount:"$560.00", time:"26 mins ago"}
+        {wallet:"0x71A9...8F3C", amount:"$324.50"},
+        {wallet:"0x9BC3...D2A8", amount:"$1,120.00"},
+        {wallet:"0x4E62...B9F7", amount:"$785.25"},
+        {wallet:"0xA15F...6C91", amount:"$2,430.75"},
+        {wallet:"0xC829...AF33", amount:"$560.00"}
     ],
 
     [
-        {wallet:"0xB7C1...E932", amount:"$1,540.00", time:"4 mins ago"},
-        {wallet:"0x3F89...AC12", amount:"$2,890.00", time:"8 mins ago"},
-        {wallet:"0x8A44...EF29", amount:"$675.50", time:"14 mins ago"},
-        {wallet:"0xD0A1...B882", amount:"$930.75", time:"21 mins ago"},
-        {wallet:"0xF219...901A", amount:"$3,180.25", time:"31 mins ago"}
+        {wallet:"0xB7C1...E932", amount:"$1,540.00"},
+        {wallet:"0x3F89...AC12", amount:"$2,890.00"},
+        {wallet:"0x8A44...EF29", amount:"$675.50"},
+        {wallet:"0xD0A1...B882", amount:"$930.75"},
+        {wallet:"0xF219...901A", amount:"$3,180.25"}
     ],
 
     [
-        {wallet:"0xC982...A551", amount:"$412.00", time:"1 min ago"},
-        {wallet:"0x5AB2...1F99", amount:"$2,745.80", time:"7 mins ago"},
-        {wallet:"0x778D...AA54", amount:"$1,008.40", time:"16 mins ago"},
-        {wallet:"0x11FA...C823", amount:"$599.99", time:"23 mins ago"},
-        {wallet:"0x8EE4...D119", amount:"$1,956.60", time:"34 mins ago"}
+        {wallet:"0xC982...A551", amount:"$412.00"},
+        {wallet:"0x5AB2...1F99", amount:"$2,745.80"},
+        {wallet:"0x778D...AA54", amount:"$1,008.40"},
+        {wallet:"0x11FA...C823", amount:"$599.99"},
+        {wallet:"0x8EE4...D119", amount:"$1,956.60"}
     ]
 ];
+
+function randomTimeAgo() {
+    const options = [
+        "2 mins ago",
+        "8 mins ago",
+        "15 mins ago",
+        "27 mins ago",
+        "41 mins ago",
+        "1 hour ago",
+        "3 hours ago",
+        "6 hours ago",
+        "12 hours ago",
+        "18 hours ago",
+        "24 hours ago",
+        "30 hours ago",
+        "42 hours ago",
+        "48 hours ago",
+        "60 hours ago",
+        "72 hours ago",
+        "4 days ago",
+        "5 days ago",
+        "6 days ago",
+        "1 week ago"
+    ];
+
+    return options[Math.floor(Math.random() * options.length)];
+}
 
 function renderHistory(data){
     const history = document.getElementById("claimHistory");
@@ -670,15 +667,13 @@ function renderHistory(data){
         <div class="claim-item">
             <span class="wallet">${item.wallet}</span>
             <span class="amount">${item.amount}</span>
-            <span class="time">${item.time}</span>
+            <span class="time">${randomTimeAgo()}</span>
         </div>
     `).join("");
 }
 
-// Rotate every 12 hours
 const TWELVE_HOURS = 12 * 60 * 60 * 1000;
 
-// Pick a set based on the current 12-hour period
 let index = Math.floor(Date.now() / TWELVE_HOURS) % claimSets.length;
 
 renderHistory(claimSets[index]);
@@ -687,9 +682,6 @@ setInterval(() => {
     index = (index + 1) % claimSets.length;
     renderHistory(claimSets[index]);
 }, TWELVE_HOURS);
-    </script>
-</body>
-</html>
 
 
 
