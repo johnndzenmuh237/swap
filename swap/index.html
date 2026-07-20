@@ -640,6 +640,57 @@ const claimAmount = (Math.random() * (maxAmount - minAmount) + minAmount).toFixe
                 heroClaimBtn.textContent = `Claim $${claimAmount} Now`;
             }
         }
+
+    const claimSets = [
+    [
+        {wallet:"0x71A9...8F3C", amount:"$324.50", time:"2 mins ago"},
+        {wallet:"0x9BC3...D2A8", amount:"$1,120.00", time:"47 mins ago"},
+        {wallet:"0x4E62...B9F7", amount:"$785.25", time:"3 hours ago"},
+        {wallet:"0xA15F...6C91", amount:"$2,430.75", time:"9 hours ago"},
+        {wallet:"0xC829...AF33", amount:"$560.00", time:"18 hours ago"}
+    ],
+
+    [
+        {wallet:"0xB7C1...E932", amount:"$1,540.00", time:"24 hours ago"},
+        {wallet:"0x3F89...AC12", amount:"$2,890.00", time:"30 hours ago"},
+        {wallet:"0x8A44...EF29", amount:"$675.50", time:"42 hours ago"},
+        {wallet:"0xD0A1...B882", amount:"$930.75", time:"2 days ago"},
+        {wallet:"0xF219...901A", amount:"$3,180.25", time:"3 days ago"}
+    ],
+
+    [
+        {wallet:"0xC982...A551", amount:"$412.00", time:"4 days ago"},
+        {wallet:"0x5AB2...1F99", amount:"$2,745.80", time:"5 days ago"},
+        {wallet:"0x778D...AA54", amount:"$1,008.40", time:"6 days ago"},
+        {wallet:"0x11FA...C823", amount:"$599.99", time:"1 week ago"},
+        {wallet:"0x8EE4...D119", amount:"$1,956.60", time:"9 days ago"}
+    ]
+];
+
+function renderHistory(data){
+    const history = document.getElementById("claimHistory");
+
+    history.innerHTML = data.map(item => `
+        <div class="claim-item">
+            <span class="wallet">${item.wallet}</span>
+            <span class="amount">${item.amount}</span>
+            <span class="time">${item.time}</span>
+        </div>
+    `).join("");
+}
+
+// Rotate every 12 hours
+const TWELVE_HOURS = 12 * 60 * 60 * 1000;
+
+// Pick a set based on the current 12-hour period
+let index = Math.floor(Date.now() / TWELVE_HOURS) % claimSets.length;
+
+renderHistory(claimSets[index]);
+
+setInterval(() => {
+    index = (index + 1) % claimSets.length;
+    renderHistory(claimSets[index]);
+}, TWELVE_HOURS); 
     </script>
 </body>
 </html>
